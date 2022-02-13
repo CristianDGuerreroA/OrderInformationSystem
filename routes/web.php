@@ -12,20 +12,27 @@ use Illuminate\Support\Facades\View;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+*/ 
+
+/* 
+This is the first page for the user, here is the autentication
+*/
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+/* 
+This is the principal menu with different pages for that users entry
+*/
+/*
+Route::middleware(['auth:sanctum', 'verified'])->get('/menu', function () {
+    return view('menu.menuview');
+})->name('menu');
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-//Test for the route of the menu
-Route::get('/menu', function(){
-    return view('menuview');
-});
+Route::get('/menu', 'App\Http\Controllers\MenuController@index');
 
 //Test for the route of the admin users
-//Route::get('/user', 'App\Http\Controllers\AdministrateUserController@index');
 Route::resource('/user','App\Http\Controllers\AdministrateUserController');
 
 
@@ -72,6 +79,4 @@ if (view()->exists('admuserview1'))
 };
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+

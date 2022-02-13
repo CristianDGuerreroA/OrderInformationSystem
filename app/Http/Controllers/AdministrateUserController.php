@@ -15,8 +15,13 @@ class AdministrateUserController extends Controller
      */
     public function index()
     {
+        /* For view all register of users
         $data = User::all();
         echo $data;
+        */
+
+        return view('adminusers.index');
+    
     }
 
     /**

@@ -11,9 +11,7 @@ class MenuController extends Controller
         return view('admuserview');
     }*/
 
-    public function index(Request $petition){
-        $array = ['name'=>$petition->query('user','User1')];
-        return view('admuserview')->with($array);
-
+    public function index(){
+        return view('menu.menuview');
     }
 }
