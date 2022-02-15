@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class AdministrateUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,8 @@ class AdministrateUserController extends Controller
      */
     public function index()
     {
-        /* For view all register of users
-        $data = User::all();
-        echo $data;
-        */
-
-        return view('adminusers.index');
-    
+        $users = User::all(); //This contains all registers for orders
+        return view('users.index')-> with('users', $users);
     }
 
     /**
@@ -31,7 +26,7 @@ class AdministrateUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -42,7 +37,14 @@ class AdministrateUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $users = new User();
+
+        $users->name = $request->get('name');
+        $users->email = $request->get('email');
+        $users->password = $request->get('password');
+        
+        $users->save();
+        return redirect('/users');
     }
 
     /**
@@ -64,7 +66,8 @@ class AdministrateUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('users.edit')->with('user',$user);
     }
 
     /**
@@ -76,7 +79,14 @@ class AdministrateUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');
+
+        $user->save();
+        return redirect('/users');
     }
 
     /**
@@ -87,6 +97,8 @@ class AdministrateUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/users');
     }
 }

@@ -33,14 +33,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/menu', function () {
 Route::get('/menu', 'App\Http\Controllers\MenuController@index');
 
 //Test for the route of the admin users
-Route::resource('/user','App\Http\Controllers\AdministrateUserController');
+Route::resource('/users','App\Http\Controllers\UserController');
+
+//Test for the route of the orders
+Route::resource('/orders','App\Http\Controllers\OrderController');
 
 
-
-//Test for the route of the create order
+/* //Test for the route of the create order
 Route::get('/create/order', function(){
     return 'This is the menu for the moment';
-});
+}); */
 
 //Test for the route of the view order
 Route::get('/view/order', function(){
@@ -52,11 +54,11 @@ Route::get('/pdf/{idorder}', function($idorder){
     return 'ID is: '.$idorder;
 });
 
-
+/* 
 //Test for the route of the edit order
 Route::get('/edit/order/{idorder?}', function($idorder=1){
     return 'This is the menu for the moment and order: '.$idorder;
-});
+}); */
 
 //Redirect, (para ir alguna ruta especifica así se ingrese en otra)
 Route::get('/edit', function(){
