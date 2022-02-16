@@ -1,10 +1,17 @@
 @extends('layouts.coretemplate');
 
+@section('css')
+    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+@endsection
+
+
+
 @section('content')
+
 <a href="orders/create" class="btn btn-primary"> CREATE </a>
-<table class="table table-dark table-striped mt-4">
+<table id="orders" class="table table-bordered table-striped shadow-lg mt-4" style="width:100%">
     
-    <thead>
+    <thead class="bg-primary text-white">
         <tr>
             <th scope="col"> ID </th>
             <th scope="col"> Date order </th>
@@ -47,9 +54,18 @@
         @endforeach
     </tbody>
     
-</table>
-   <table class="table table-dark table-striped mt-4">
-    
-</table> 
+
+
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+         $('orders').DataTable();
+        } );
+    </script>
+@endsection
 
 @endsection

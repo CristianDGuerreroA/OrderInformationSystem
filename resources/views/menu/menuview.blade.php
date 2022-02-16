@@ -14,19 +14,12 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item" href="/users">Administrate Users</a>
       <a class="dropdown-item" href="/orders">Create orders</a>
-      <a class="dropdown-item" href="#">View Orders</a>
-      <a class="dropdown-item" href="#">Generate PDF</a>
+      <a class="dropdown-item" href="/orders/inputparams">View Orders</a>
+      <a class="dropdown-item" href="/orders/pdfform">Generate PDF</a>
       <a class="dropdown-item" href="#">Edit Orders </a>
     </div>
   </div>
 
-
-    {{-- <h2>Menu</h2>
-    <a href="/users">Administrate users</a><br>
-    <a href="/orders">Create order</a><br>
-    <a href="#">View order</a><br>
-    <a href="#">Generate PDF</a><br>
-    <a href="#">Edit order</a><br> --}}
 @stop
 
 @section('css')

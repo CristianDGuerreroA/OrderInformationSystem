@@ -35,6 +35,15 @@ Route::get('/menu', 'App\Http\Controllers\MenuController@index');
 //Test for the route of the admin users
 Route::resource('/users','App\Http\Controllers\UserController');
 
+//Test for the route of the view order
+Route::get('/orders/inputparams',  'App\Http\Controllers\OrderController@input');
+
+
+//Test for the route of the generate PDF
+Route::get('/orders/pdfform', [App\Http\Controllers\OrderController::class, 'pdf'])->name('orders.pdfform');
+
+Route::get('/orders/pdfgenerated', [App\Http\Controllers\OrderController::class, 'pdfgenerated'])->name('orders.pdfgenerated');
+
 //Test for the route of the orders
 Route::resource('/orders','App\Http\Controllers\OrderController');
 
@@ -44,15 +53,7 @@ Route::get('/create/order', function(){
     return 'This is the menu for the moment';
 }); */
 
-//Test for the route of the view order
-Route::get('/view/order', function(){
-    return 'This is the menu for the moment';
-});
 
-//Test for the route of the generate PDF
-Route::get('/pdf/{idorder}', function($idorder){
-    return 'ID is: '.$idorder;
-});
 
 /* 
 //Test for the route of the edit order
@@ -60,7 +61,7 @@ Route::get('/edit/order/{idorder?}', function($idorder=1){
     return 'This is the menu for the moment and order: '.$idorder;
 }); */
 
-//Redirect, (para ir alguna ruta especifica así se ingrese en otra)
+/* //Redirect, (para ir alguna ruta especifica así se ingrese en otra)
 Route::get('/edit', function(){
     return redirect()->route('user');
 });
@@ -78,7 +79,7 @@ if (view()->exists('admuserview1'))
     });
 }else{
     return 'The view needed does not exists';
-};
+}; */
 
 
 

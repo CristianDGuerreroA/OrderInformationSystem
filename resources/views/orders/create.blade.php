@@ -4,30 +4,47 @@
 <h2> Create Orders</h2>
 <form action="/orders" method="POST">
     @csrf
-    <div class="mb-3">
-        <label for="" class="form-label"> Date order </label>
-        <input id="date_order" name="date_order" type="text" class="form-control" tabindex="1">
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <div class="mb-3">
+                <label for="" class="form-label"> Date order </label>
+                <input id="date_order" name="date_order" type="text" class="form-control" tabindex="1">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="mb-3">
+                <label for="" class="form-label"> Customer name </label>
+                <input id="customer_name" name="customer_name" type="text" class="form-control" tabindex="2">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="mb-3">
+                <label for="" class="form-label"> Customer id </label>
+                <input id="customer_id" name="customer_id" type="text" class="form-control" tabindex="3">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="mb-3">
+                <label for="" class="form-label"> Customer address </label>
+                <input id="customer_address" name="customer_address" type="text" class="form-control" tabindex="3">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="mb-3">
+                <label for="" class="form-label"> Customer_email </label>
+                <input id="customer_email" name="customer_email" type="text" class="form-control" tabindex="3">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="mb-3">
+                <label for="" class="form-label"> Order currency </label>
+                <input id="order_currency" name="order_currency" type="text" class="form-control" tabindex="3">
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="" class="form-label"> Customer name </label>
-        <input id="customer_name" name="customer_name" type="text" class="form-control" tabindex="2">
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label"> Customer id </label>
-        <input id="customer_id" name="customer_id" type="text" class="form-control" tabindex="3">
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label"> Customer address </label>
-        <input id="customer_address" name="customer_address" type="text" class="form-control" tabindex="3">
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label"> Customer_email </label>
-        <input id="customer_email" name="customer_email" type="text" class="form-control" tabindex="3">
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label"> Order currency </label>
-        <input id="order_currency" name="order_currency" type="text" class="form-control" tabindex="3">
-    </div>
+    <br>
+    <h2> Info Orders </h2>
+    <br>
     <div class="mb-3">
         <label for="" class="form-label"> Product id </label>
         <input id="product_id" name="product_id" type="text" class="form-control" tabindex="3">

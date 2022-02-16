@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
+use Dompdf\Dompdf;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -114,6 +117,32 @@ class OrderController extends Controller
         $order->delete();
         return redirect('/orders');
     }
+
+    public function input(Request $request)
+    {   
+        $product_id = $request->get('product_id');
+        $date_order = $request->get('date_order');
+        $customer_id = $request->get('customer_id');
+        $orders = DB::table('orders')
+                     ->where('product_id',$product_id)
+                     ->where('date_order', $date_order)
+                     ->where('customer_id',$customer_id);
+        return view('orders.inputparams')-> with('orders', $orders);;
+    }
+
+    public function pdf(Request $request)
+    {
+        $order = Order::find($request->get('product_id'));
+        
+        return view('orders.pdfgenerated')->with('order',$order);
+    }
+
+    public function pdfgenerated()
+    {
+        $pdf = new Dompdf();
+        $pdf->loadHtml('orders.pdfgenerated',['order'=>$order]);
+    }
+
 }
 
 
