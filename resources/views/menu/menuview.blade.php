@@ -15,8 +15,9 @@
       <a class="dropdown-item" href="/users">Administrate Users</a>
       <a class="dropdown-item" href="/orders">Create orders</a>
       <a class="dropdown-item" href="/orders/inputparams">View Orders</a>
-      <a class="dropdown-item" href="/orders/pdfform">Generate PDF</a>
-      <a class="dropdown-item" href="#">Edit Orders </a>
+      <a class="dropdown-item" href="/orders/listpdf">Generate PDF</a>
+      <a class="dropdown-item" href="/orders/listedit">Edit Orders </a>
+      <a class="dropdown-item" href="/orders/search">View Search </a>
     </div>
   </div>
 
@@ -27,5 +28,5 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    
 @stop

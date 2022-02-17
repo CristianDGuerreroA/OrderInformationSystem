@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-use Illuminate\Support\Facades\DB;
-use Dompdf\Dompdf;
 use PDF;
 
 class OrderController extends Controller
@@ -61,9 +59,15 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Request $request)
+    {   
+        $orders = Order::where('product_id', $request->get('product_id'))
+                    ->Where('date_order', $request->get('date_order'))
+                    ->Where('customer_id', $request->get('customer_id'))
+                    ->orderBy('id','ASC')->get();
+        return view('orders.showregister',[ 
+            'orders' => $orders
+        ]);
     }
 
     /**
@@ -118,31 +122,46 @@ class OrderController extends Controller
         return redirect('/orders');
     }
 
-    public function input(Request $request)
+    public function input()
     {   
-        $product_id = $request->get('product_id');
-        $date_order = $request->get('date_order');
-        $customer_id = $request->get('customer_id');
-        $orders = DB::table('orders')
-                     ->where('product_id',$product_id)
-                     ->where('date_order', $date_order)
-                     ->where('customer_id',$customer_id);
-        return view('orders.inputparams')-> with('orders', $orders);;
+        return view('orders.inputparams');
     }
 
-    public function pdf(Request $request)
+    public function inputPdf()
+    {   
+        return view('orders.pdfinput');
+    }
+
+    public function search()
     {
-        $order = Order::find($request->get('product_id'));
-        
-        return view('orders.pdfgenerated')->with('order',$order);
+        $orders = Order::all(); //This contains all registers for orders
+        return view('orders.search')-> with('orders', $orders);
     }
 
-    public function pdfgenerated()
+    public function orderspdf()
     {
-        $pdf = new Dompdf();
-        $pdf->loadHtml('orders.pdfgenerated',['order'=>$order]);
+        $orders = Order::all(); //This contains all registers for orders
+        return view('orders.orderspdf')-> with('orders', $orders);
     }
 
+    public function ordersedit()
+    {
+        $orders = Order::all(); //This contains all registers for orders
+        return view('orders.ordersedit')-> with('orders', $orders);
+    }
+
+    public function pdf($id)
+    {
+        $order =  Order::find($id);
+        $data = [
+            'title' => 'PDF',
+            'date' => date('02/16/2022'),
+            'order' => $order,
+        ];
+        $pdf = PDF::loadView('orders.pdf', $data);
+        return $pdf->download('order.pdf');
+    }
+ 
 }
 
 

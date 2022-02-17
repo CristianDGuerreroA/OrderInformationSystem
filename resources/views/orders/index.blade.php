@@ -1,14 +1,17 @@
 @extends('layouts.coretemplate');
 
 @section('css')
-    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" >
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" >
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.0.1/css/dataTables.searchPanes.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
 @endsection
 
 
 
 @section('content')
 
-<a href="orders/create" class="btn btn-primary"> CREATE </a>
+<a href="orders/create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus"> </i> </a>
 <table id="orders" class="table table-bordered table-striped shadow-lg mt-4" style="width:100%">
     
     <thead class="bg-primary text-white">
@@ -42,30 +45,20 @@
             <td>{{$order->product_quantity}}</td>
             <td>{{$order->product_unit_of_measure}}</td>
             <td>{{$order->net_product_value}}</td>
-            <td>
-            <form action="{{ route('orders.destroy',$order->id) }}" method="POST">
-                <a href="/orders/{{$order->id}}/edit" class="btn btn-info">Edit</a>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-            </td>
         </tr>
+        <br>
         @endforeach
     </tbody>
     
 
 
 @section('js')
+    <script src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-         $('orders').DataTable();
-        } );
-    </script>
 @endsection
 
 @endsection

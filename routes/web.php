@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,65 +20,36 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-/* 
-This is the principal menu with different pages for that users entry
-*/
-/*
-Route::middleware(['auth:sanctum', 'verified'])->get('/menu', function () {
-    return view('menu.menuview');
-})->name('menu');
-*/
 
 Route::get('/menu', 'App\Http\Controllers\MenuController@index');
 
 //Test for the route of the admin users
 Route::resource('/users','App\Http\Controllers\UserController');
 
-//Test for the route of the view order
+//Test for the route of the input params 
 Route::get('/orders/inputparams',  'App\Http\Controllers\OrderController@input');
 
 
 //Test for the route of the generate PDF
-Route::get('/orders/pdfform', [App\Http\Controllers\OrderController::class, 'pdf'])->name('orders.pdfform');
+Route::get('/orders/{idorder?}/pdf',  'App\Http\Controllers\OrderController@pdf');
 
-Route::get('/orders/pdfgenerated', [App\Http\Controllers\OrderController::class, 'pdfgenerated'])->name('orders.pdfgenerated');
+//Route for search filter.
+Route::get('/orders/search',  'App\Http\Controllers\OrderController@search');
+
+//Route for view all orders with PDF
+Route::get('/orders/listpdf',  'App\Http\Controllers\OrderController@orderspdf');
+
+//Route for view all orders with PDF
+Route::get('/orders/listedit',  'App\Http\Controllers\OrderController@ordersedit');
 
 //Test for the route of the orders
 Route::resource('/orders','App\Http\Controllers\OrderController');
 
-
-/* //Test for the route of the create order
-Route::get('/create/order', function(){
-    return 'This is the menu for the moment';
-}); */
+//Test for the route of the view order
 
 
 
-/* 
-//Test for the route of the edit order
-Route::get('/edit/order/{idorder?}', function($idorder=1){
-    return 'This is the menu for the moment and order: '.$idorder;
-}); */
 
-/* //Redirect, (para ir alguna ruta especifica así se ingrese en otra)
-Route::get('/edit', function(){
-    return redirect()->route('user');
-});
-
-//validators string int etc  '[0-9]' '[A-Za-z]' .
-Route::get('/user/{iduser}', function($iduser){
-    return 'The user is: '.$iduser;
-})->where('iduser','[0-9]');
-
-//example with conditional
-if (view()->exists('admuserview1'))
-{
-    Route::get('/user', function(){
-        return view('admuserview1');
-    });
-}else{
-    return 'The view needed does not exists';
-}; */
 
 
 

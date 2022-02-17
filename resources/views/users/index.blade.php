@@ -1,7 +1,7 @@
 @extends('layouts.coretemplate');
 
 @section('content')
-<a href="users/create" class="btn btn-primary"> CREATE </a>
+<a href="users/create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus"> </i></a>
 <table class="table table-dark table-striped mt-4">
     
     <thead>
@@ -19,10 +19,10 @@
             <td>{{$user->password}}</td>
             <td>
             <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                <a href="/users/{{$user->id}}/edit" class="btn btn-info">Edit</a>
+                <a href="/users/{{$user->id}}/edit" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
             </form>
             </td>
         </tr>
